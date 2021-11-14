@@ -9,17 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     
-    var array = ["E1", "E2", "E3", "E4"]
+    var model = RecipeModel()
     
     var body: some View {
         NavigationView {
-            List(array, id: \.self) { arrayElement in
-                NavigationLink(destination: {
-                    Text(arrayElement)
+            List(model.recipes) { r in
+                NavigationLink (destination: {
                 }, label: {
-                    Text(arrayElement)
+                    VStack(alignment: .leading) {
+                        Text(r.name).font(.title2)
+                        Text(r.cuisin)
+                    }
                 })
-            }.navigationBarTitle(Text("My List"))
+            }.navigationBarTitle(Text("Food Result"))
         }
     }
 }
