@@ -7,8 +7,8 @@
 
 import Foundation
 
-class RecipeModel {
-    var recipes = [Recipe]()
+class RecipeModel: ObservableObject {
+    @Published var recipes = [Recipe]()
     
     // Init of class
     init() {
@@ -16,5 +16,13 @@ class RecipeModel {
         recipes.append(Recipe(name: "Noodles", cuisin: "China"))
         recipes.append(Recipe(name: "Humburger", cuisin: "American"))
         recipes.append(Recipe(name: "Sushi", cuisin: "Japan"))
+    }
+    
+    func addRecipe() {
+        recipes.append(Recipe(name: "Fish", cuisin: "China"))
+    }
+    
+    func deleteRecipe() {
+        recipes.remove(at: 0)
     }
 }

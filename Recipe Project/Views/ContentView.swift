@@ -9,19 +9,29 @@ import SwiftUI
 
 struct ContentView: View {
     
-    var model = RecipeModel()
+    @ObservedObject var model = RecipeModel()
     
     var body: some View {
         NavigationView {
-            List(model.recipes) { r in
-                NavigationLink (destination: {
-                }, label: {
-                    VStack(alignment: .leading) {
-                        Text(r.name).font(.title2)
-                        Text(r.cuisin)
-                    }
-                })
-            }.navigationBarTitle(Text("Food Result"))
+            VStack {
+                List(model.recipes) { r in
+                    NavigationLink (destination: {
+                        // TODO
+                    }, label: {
+                        VStack(alignment: .leading) {
+                            Text(r.name).font(.title2)
+                            Text(r.cuisin)
+                        }
+                    })
+                }.navigationTitle(Text("Food List"))
+                    .navigationBarItems(trailing: Button (
+                        action: {
+                            model.addRecipe()
+                        }
+                    ) {
+                        Image(systemName: "plus.rectangle.on.rectangle")
+                    })
+            }
         }
     }
 }
