@@ -12,6 +12,23 @@ struct ContentView: View {
     @ObservedObject var model = RecipeModel()
     @State var money = 0
     @State var isPresented = false
+    @State var isAlert = false
+
+    // 完成付款
+    let primaryButton = Alert.Button.default(Text("Yes")) {
+        print("Yes, I gonna buy these.")
+    }
+
+    let secondaryButton = Alert.Button.destructive(Text("No")) {
+        print("No, I wanna think more.")
+    }
+    
+    var alert: Alert {
+        Alert(title: Text("Notice"),
+              message: Text("Make sure to spend " + String(money) + "¥"),
+              primaryButton: primaryButton,
+              secondaryButton: secondaryButton)
+    }
     
     // 模糊窗口
     var modalView: some View {
@@ -22,7 +39,7 @@ struct ContentView: View {
                         HStack {
                             Text(r.name)
                             Spacer()
-                            Text("¥"+String(r.price))
+                            Text(String(r.price)+"¥")
                         }
                         Spacer()
                         Button(action: {
@@ -30,12 +47,12 @@ struct ContentView: View {
                                 money = money - r.price
                             }
                         }) {
-                            Image(systemName: "minus.circle").padding()
+                            Image(systemName: "minus.circle").imageScale(.large).padding()
                         }
                         
                     }
                 }.navigationTitle(Text("Shop List"))
-                Text("¥"+String(money)).fontWeight(.bold).font(.title2).padding()
+                Text(String(money)+"¥").fontWeight(.bold).font(.title2).padding()
             }
         }
     }
@@ -48,36 +65,43 @@ struct ContentView: View {
                     HStack{
                         VStack(alignment: .leading) {
                             Text(r.name).font(.title2)
-                            Text("¥"+String(r.price))
+                            Text(String(r.price)+"¥")
                         }
                         Spacer()
                         Button(action: {
                             money = money + r.price
                         }) {
-                            Image(systemName: "plus.circle").padding()
+                            Image(systemName: "plus.circle").imageScale(.large).padding()
                         }
                         
                     }
                 }.navigationTitle(Text("Food List"))
+                    
                 HStack {
-                    Text("¥"+String(money)).fontWeight(.bold).font(.title2).padding()
+                    Text(String(money)+"¥").fontWeight(.bold).font(.title2).padding()
+                    
                     Spacer()
+                    
+                    // Finish Button
                     Button(action :{
-                        
-                    }) {
-                        Text("OK")
-                            .foregroundColor(.white)                         .fontWeight(.bold)
-                            .font(.title2)
-                            .frame(width: 80.0, height: 60.0)
-                            .background(.blue)
-                            .padding()
-                         
-                    }
+                        // TODO Finish shopping and pay money
+                        self.isAlert = true
+                    }, label: {
+                        Text("Done")
+                    }).foregroundColor(.white)
+                        .padding()
+                        .background(.blue)
+                        .cornerRadius(8)
+                        .alert(isPresented: $isAlert, content: {
+                            alert
+                        })
                     Spacer()
+                    
                     Button(action: {
                         self.isPresented = true
+                        
                     }) {
-                        Image(systemName: "cart").padding()
+                        Image(systemName: "cart").imageScale(.large).padding()
                     }.sheet(isPresented: $isPresented, content: {
                         self.modalView //将创建的自定义视图作为模态窗口的内容
                     })
