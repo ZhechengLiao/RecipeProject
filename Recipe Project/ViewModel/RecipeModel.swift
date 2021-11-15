@@ -13,16 +13,32 @@ class RecipeModel: ObservableObject {
     // Init of class
     init() {
         // Create some dummy data
-        recipes.append(Recipe(name: "Noodles", cuisin: "China"))
-        recipes.append(Recipe(name: "Humburger", cuisin: "American"))
-        recipes.append(Recipe(name: "Sushi", cuisin: "Japan"))
+        let pathString = Bundle.main.path(forResource: "data", ofType: "json")
+        if pathString != nil {
+            let url = URL(fileURLWithPath: pathString!)
+            
+            do {
+                let data = try Data(contentsOf: url)
+                
+                let decoder = JSONDecoder()
+                
+                do {
+                    let recipeData = try decoder.decode([Recipe].self, from: data)
+                    
+                    for r in recipeData {
+                        r.id = UUID()
+                    }
+                    
+                    self.recipes = recipeData
+                }
+                catch {
+                    print(error)
+                }
+            }
+            catch {
+                print(error)
+            }
+        }
     }
     
-    func addRecipe() {
-        recipes.append(Recipe(name: "Fish", cuisin: "China"))
-    }
-    
-    func deleteRecipe() {
-        recipes.remove(at: 0)
-    }
 }

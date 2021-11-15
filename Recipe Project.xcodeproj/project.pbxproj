@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3615F3F52741E7F20059D025 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 3615F3F42741E7F20059D025 /* data.json */; };
 		36C7688727412CD600170E72 /* Recipe_ProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C7688627412CD600170E72 /* Recipe_ProjectApp.swift */; };
 		36C7688927412CD600170E72 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C7688827412CD600170E72 /* ContentView.swift */; };
 		36C7688B27412CD600170E72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36C7688A27412CD600170E72 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3615F3F42741E7F20059D025 /* data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		36C7688327412CD600170E72 /* Recipe Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Recipe Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36C7688627412CD600170E72 /* Recipe_ProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe_ProjectApp.swift; sourceTree = "<group>"; };
 		36C7688827412CD600170E72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -36,6 +38,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3615F3F32741E7AF0059D025 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3615F3F42741E7F20059D025 /* data.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		36C7687A27412CD600170E72 = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +69,7 @@
 				36C7689627413AC700170E72 /* ViewModel */,
 				36C7689527413AC000170E72 /* Models */,
 				36C7689427413AB700170E72 /* Views */,
+				3615F3F32741E7AF0059D025 /* Resources */,
 				36C7688A27412CD600170E72 /* Assets.xcassets */,
 				36C7688C27412CD600170E72 /* Preview Content */,
 			);
@@ -156,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36C7688E27412CD600170E72 /* Preview Assets.xcassets in Resources */,
+				3615F3F52741E7F20059D025 /* data.json in Resources */,
 				36C7688B27412CD600170E72 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

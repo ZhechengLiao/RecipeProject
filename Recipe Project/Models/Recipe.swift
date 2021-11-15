@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct Recipe: Identifiable {
+class Recipe: Decodable, Identifiable {
     
-    var id = UUID()
-    var name = ""
-    var cuisin = ""
+    var id: UUID?
+    var name: String
+    var price: Int
 
 }
